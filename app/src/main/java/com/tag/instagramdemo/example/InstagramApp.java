@@ -71,6 +71,9 @@ public class InstagramApp {
 	public static final String TAG_FULL_NAME = "full_name";
 	public static final String TAG_META = "meta";
 	public static final String TAG_CODE = "code";
+	public static final double[] TAG_AREA = {37.504487, 127.048973}; //선릉역
+	public static final int TAG_DISTANCE = 1000; // default = 1Km, max = 5Km
+	public static String TAG_SEARCH_ID = "";
 
 	public InstagramApp(Context context, String clientId, String clientSecret,
 			String callbackUrl) {
@@ -89,7 +92,7 @@ public class InstagramApp {
 				+ clientId
 				+ "&redirect_uri="
 				+ mCallbackUrl
-				+ "&response_type=code&display=touch&scope=likes+comments+relationships";
+				+ "&response_type=code&display=touch&scope=likes+comments+relationships+follower_list+public_content";
 
 		OAuthDialogListener listener = new OAuthDialogListener() {
 			@Override
@@ -270,7 +273,7 @@ public class InstagramApp {
 	public String getName() {
 		return mSession.getName();
 	}
-	public String getTOken() {
+	public String getToken() {
 		return mSession.getAccessToken();
 	}
 	public void authorize() {
