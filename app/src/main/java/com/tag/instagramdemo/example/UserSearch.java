@@ -1,11 +1,5 @@
 package com.tag.instagramdemo.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,9 +12,15 @@ import android.widget.Toast;
 
 import com.tag.instagramdemo.R;
 
-public class Relationship extends Activity {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class UserSearch extends Activity {
 	private String url = "";
-	private ListView lvRelationShipAllUser;
+	private ListView lvMatchedAllUser;
 	private ArrayList<HashMap<String, String>> usersInfo = new ArrayList<HashMap<String, String>>();
 	private Context context;
 	private int WHAT_FINALIZE = 0;
@@ -51,14 +51,14 @@ public class Relationship extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.relationship);
-		lvRelationShipAllUser = (ListView) findViewById(R.id.lvRelationShip);
-		url = getIntent().getStringExtra("userInfo");
-		context = Relationship.this;
+		lvMatchedAllUser = (ListView) findViewById(R.id.lvRelationShip);
+		url = getIntent().getStringExtra("user_search");
+		context = UserSearch.this;
 		getAllMediaImages();
 	}
 
 	private void setImageGridAdapter() {
-		lvRelationShipAllUser.setAdapter(new RelationShipAdapter(context,
+		lvMatchedAllUser.setAdapter(new RelationShipAdapter(context,
 				usersInfo));
 	}
 

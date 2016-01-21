@@ -8,13 +8,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +31,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private InstagramApp mApp;
 	private Button btnConnect, btnViewInfo, btnGetAllImages, btnFollowers,
-			btnFollwing;
+			btnFollwing, btnPopular, btnMediaSearch, btnLiked, btnUserSearch;
+	private EditText editUserSearch;
 	private LinearLayout llAfterLoginView;
 	private HashMap<String, String> userInfoHashmap = new HashMap<String, String>();
 	private Handler handler = new Handler(new Callback() {
@@ -88,6 +92,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnGetAllImages.setOnClickListener(this);
 		btnFollwing.setOnClickListener(this);
 		btnFollowers.setOnClickListener(this);
+		btnPopular.setOnClickListener(this);
+		btnMediaSearch.setOnClickListener(this);
+		btnLiked.setOnClickListener(this);
+		btnUserSearch.setOnClickListener(this);
 	}
 
 	private void setWidgetReference() {
@@ -97,6 +105,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnGetAllImages = (Button) findViewById(R.id.btnGetAllImages);
 		btnFollowers = (Button) findViewById(R.id.btnFollows);
 		btnFollwing = (Button) findViewById(R.id.btnFollowing);
+		btnPopular = (Button) findViewById(R.id.btnPopular);
+		btnMediaSearch = (Button) findViewById(R.id.btnMediaSearch);
+		btnLiked = (Button) findViewById(R.id.btnLiked);
+		editUserSearch = (EditText) findViewById(R.id.editUserSearch);
+		btnUserSearch = (Button) findViewById(R.id.btnUserSearch);
 	}
 
 	// OAuthAuthenticationListener listener ;
@@ -110,16 +123,47 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (v == btnGetAllImages) {
 			startActivity(new Intent(MainActivity.this, AllMediaFiles.class)
 					.putExtra("userInfo", userInfoHashmap));
-		} else {
+		} else if (v == btnPopular) {
+			String url = "";
+			url = "https://api.instagram.com/v1/media/popular?access_token="
+					+ mApp.getToken();
+			startActivity(new Intent(MainActivity.this, Popular.class)
+					.putExtra("popular", url));
+		} else if (v == btnMediaSearch) {
+			String url = "";
+			url = "https://api.instagram.com/v1/media/search?lat=" + InstagramApp.TAG_AREA[0] +
+					"&lng=" + InstagramApp.TAG_AREA[1] +
+					"&distance=" + InstagramApp.TAG_DISTANCE +
+					"&access_token=" + mApp.getToken();
+			startActivity(new Intent(MainActivity.this, MediaSearch.class)
+					.putExtra("media_search", url));
+		} else if (v == btnLiked) {
+			String url = "";
+			url = "https://api.instagram.com/v1/users/self/media/liked?access_token="
+					+ mApp.getToken();
+			startActivity(new Intent(MainActivity.this, Liked.class)
+					.putExtra("liked", url));
+		} else if (v == btnUserSearch) {
+			InstagramApp.TAG_SEARCH_ID = editUserSearch.getText().toString();
+
+			String url = "";
+			url = "https://api.instagram.com/v1/users/search?q="
+					+ InstagramApp.TAG_SEARCH_ID
+					+ "&access_token="
+					+ mApp.getToken();
+			startActivity(new Intent(MainActivity.this, UserSearch.class)
+					.putExtra("user_search", url));
+		}
+		else {
 			String url = "";
 			if (v == btnFollowers) {
 				url = "https://api.instagram.com/v1/users/"
 						+ userInfoHashmap.get(InstagramApp.TAG_ID)
-						+ "/follows?access_token=" + mApp.getTOken();
+						+ "/follows?access_token=" + mApp.getToken();
 			} else if (v == btnFollwing) {
 				url = "https://api.instagram.com/v1/users/"
 						+ userInfoHashmap.get(InstagramApp.TAG_ID)
-						+ "/followed-by?access_token=" + mApp.getTOken();
+						+ "/followed-by?access_token=" + mApp.getToken();
 			}
 			startActivity(new Intent(MainActivity.this, Relationship.class)
 					.putExtra("userInfo", url));

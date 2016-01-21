@@ -21,6 +21,10 @@
         </activity>
         <activity android:name=".example.AllMediaFiles"></activity>
         <activity android:name=".example.Relationship"></activity>
+        <activity android:name=".example.Popular"></activity>
+        <activity android:name=".example.MediaSearch"></activity>
+        <activity android:name=".example.Liked"></activity>
+        <activity android:name=".example.UserSearch"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

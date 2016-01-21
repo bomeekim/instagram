@@ -59,6 +59,60 @@
             android:layout_marginLeft="40dip"
             android:layout_marginRight="40dip"
             android:text="Followings" />
+
+        <Button
+            android:id="@+id/btnPopular"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="40dip"
+            android:text="Popular" />
+
+        <Button
+            android:id="@+id/btnMediaSearch"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="40dip"
+            android:text="Media Search" />
+
+        <Button
+            android:id="@+id/btnLiked"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="40dip"
+            android:text="Self Liked" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editUserSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dip"
+                android:hint="Enter user id"
+                android:textColorHint="@android:color/darker_gray"
+                android:singleLine="true"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btnUserSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dip"
+                android:text="User Search"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+
+
     </LinearLayout>
 
 </LinearLayout>
