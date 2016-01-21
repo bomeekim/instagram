@@ -31,8 +31,9 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private InstagramApp mApp;
 	private Button btnConnect, btnViewInfo, btnGetAllImages, btnFollowers,
-			btnFollwing, btnPopular, btnMediaSearch, btnLiked, btnUserSearch;
-	private EditText editUserSearch;
+			btnFollwing, btnPopular, btnMediaSearch, btnLiked, btnUserSearch,
+			btnTagSearch;
+	private EditText editUserSearch, editTagSearch;
 	private LinearLayout llAfterLoginView;
 	private HashMap<String, String> userInfoHashmap = new HashMap<String, String>();
 	private Handler handler = new Handler(new Callback() {
@@ -96,6 +97,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnMediaSearch.setOnClickListener(this);
 		btnLiked.setOnClickListener(this);
 		btnUserSearch.setOnClickListener(this);
+		btnTagSearch.setOnClickListener(this);
 	}
 
 	private void setWidgetReference() {
@@ -110,6 +112,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnLiked = (Button) findViewById(R.id.btnLiked);
 		editUserSearch = (EditText) findViewById(R.id.editUserSearch);
 		btnUserSearch = (Button) findViewById(R.id.btnUserSearch);
+		editTagSearch = (EditText) findViewById(R.id.editTagSearch);
+		btnTagSearch = (Button) findViewById(R.id.btnTagSearch);
 	}
 
 	// OAuthAuthenticationListener listener ;
@@ -153,6 +157,16 @@ public class MainActivity extends Activity implements OnClickListener {
 					+ mApp.getToken();
 			startActivity(new Intent(MainActivity.this, UserSearch.class)
 					.putExtra("user_search", url));
+		} else if (v == btnTagSearch) {
+			InstagramApp.TAG_SEARCH_TAG = editTagSearch.getText().toString();
+
+			String url = "";
+			url = "https://api.instagram.com/v1/tags/search?q="
+					+ InstagramApp.TAG_SEARCH_TAG
+					+ "&access_token="
+					+ mApp.getToken();
+			startActivity(new Intent(MainActivity.this, TagSearch.class)
+					.putExtra("tag_search", url));
 		}
 		else {
 			String url = "";

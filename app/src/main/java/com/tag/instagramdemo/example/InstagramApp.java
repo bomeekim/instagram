@@ -74,6 +74,7 @@ public class InstagramApp {
 	public static final double[] TAG_AREA = {37.504487, 127.048973}; //선릉역
 	public static final int TAG_DISTANCE = 1000; // default = 1Km, max = 5Km
 	public static String TAG_SEARCH_ID = "";
+	public static String TAG_SEARCH_TAG = "";
 
 	public InstagramApp(Context context, String clientId, String clientSecret,
 			String callbackUrl) {

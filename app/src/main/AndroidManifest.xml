@@ -25,6 +25,7 @@
         <activity android:name=".example.MediaSearch"></activity>
         <activity android:name=".example.Liked"></activity>
         <activity android:name=".example.UserSearch"></activity>
+        <activity android:name=".example.TagSearch"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

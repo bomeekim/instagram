@@ -110,7 +110,31 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
+            <EditText
+                android:id="@+id/editTagSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dip"
+                android:hint="Enter tag"
+                android:textColorHint="@android:color/darker_gray"
+                android:singleLine="true"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btnTagSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dip"
+                android:text="Tag Search"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>
